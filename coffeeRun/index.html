@@ -5,6 +5,9 @@
     <title> Cofferun </title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootst
 rap/3.3.6/css/bootstrap.min.css">
+    <!--  jQuery modal -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+
   </head>
   <body class = "container">
     <header>
@@ -66,8 +69,43 @@ rap/3.3.6/css/bootstrap.min.css">
     <div class="panel panel-default">
         <div class="panel-body">
           <h4>Pending Orders:</h4>
-          <div data-coffee-order="checklist">
-          </div>
+          <div data-coffee-order="checklist"></div>
+        </div>
+      </div>
+
+    <!-- Payment -->
+    <div class="panel panel-default">
+        <div class="panel-body">
+          <h4>Payment:</h4>
+          <!-- <div data-coffee-payment="payment"></div> -->
+
+          <form data-coffee-payment="payment">
+            <div class="form-group">
+              <labe for="coffeePayment">Name:</label>
+              <input class="form-control" name="name" id="coffeePayment" autofocus>
+            </div>
+            <div class="form-group">
+              <labe for="coffeePayment">Email:</label>
+              <input class="form-control" placeholder="email@who.com" type="email" name="email" id="coffeePayment" autofocus>
+            </div>
+            <div class="form-group">
+              <labe for="coffeePayment">Credit card number:</label>
+              <input class="form-control" name="coffee" id="coffeePayment" autofocus>
+              <labe for="coffeePayment">Security code:</label>
+              <input class="form-control" name="creditCard" id="coffeePayment" autofocus>
+              <labe for="coffeePayment">Expire:</label>
+              <input class="form-control" placeholder="mm/dd//yyyy" name="creditCard" id="coffeePayment" autofocus>
+            </div>
+
+            <div id="ex1" class="modal">
+              <p>Thank you for your payment.</p>
+              <a href="#" rel="modal:close">Close</a>
+            </div>
+            <button type="submit">
+              <p><a href="#ex1" rel="modal:open">Submit payment</a></p>
+            </button>
+
+        </form>
         </div>
       </div>
   </section>
@@ -80,5 +118,9 @@ rap/3.3.6/css/bootstrap.min.css">
     <script src="scripts/datastore.js" charset="utf-8"></script>
     <script src="scripts/truck.js" charset="utf-8"></script>
     <script src="scripts/main.js" charset="utf-8"></script>
+    <!-- payment -->
+    <script src="scripts/payment.js" charset="utf-8"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
   </body>
 </html>
