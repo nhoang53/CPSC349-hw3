@@ -1,5 +1,5 @@
 (function (window) {
-  'use strict';
+  "use strict";
 
   var App = window.App || {};
   var $ = window.jQuery;
@@ -7,18 +7,18 @@
   function CheckList(selector)
   {
     if (!selector) {
-      throw new Error('No selector provided');
+      throw new Error("No selector provided");
     }
 
     this.$element = $(selector);
     if (this.$element.length === 0){
-      throw new Error('Could not find element with selector: ' + selector);
+      throw new Error("Could not find element with selector: " + selector);
     }
   }
 
-// listen the click event
+  // listen the click event
   CheckList.prototype.addClickHandler = function (fn) {
-    this.$element.on('click', 'input', function (event) {
+    this.$element.on("click", "input", function (event) {
       var email = event.target.value;
       this.removeRow(email);
       fn(email);
@@ -27,45 +27,45 @@
 
   CheckList.prototype.addRow = function (coffeeOrder)
   {
-      // Remove any existing rows that match the email address
-      this.removeRow(coffeeOrder.emailAddress);
-      // Create a new instance of a row, using the coffee order info
-      var rowElement = new Row(coffeeOrder);
-      // Add the new row instance's $element property to the checklist
-      this.$element.append(rowElement.$element);
-    };
+    // Remove any existing rows that match the email address
+    this.removeRow(coffeeOrder.emailAddress);
+    // Create a new instance of a row, using the coffee order info
+    var rowElement = new Row(coffeeOrder);
+    // Add the new row instance's $element property to the checklist
+    this.$element.append(rowElement.$element);
+  };
 
-// remove first order when the second order w/the same email submitted
+  // remove first order when the second order w/the same email submitted
   CheckList.prototype.removeRow = function (email)
   {
-      this.$element.find('[value="' + email + '"]')
-                  .closest('[data-coffee-order="checkbox"]')
-                  .remove(); // 1 semi-colon at the end
+    this.$element.find("[value=\"" + email + "\"]")
+      .closest("[data-coffee-order=\"checkbox\"]")
+      .remove(); // 1 semi-colon at the end
   };
 
   // add row checklist
   function Row(coffeeOrder)
   {
     // Constructor code will go here
-    var $div = $('<div></div>', {
-      'data-coffee-order': 'checkbox',
-      'class': 'checkbox'
+    var $div = $("<div></div>", {
+      "data-coffee-order": "checkbox",
+      "class": "checkbox"
     });
 
-    var $label = $('<label></label>');
-    var $checkbox = $('<input></input>', {
-      type: 'checkbox',
+    var $label = $("<label></label>");
+    var $checkbox = $("<input></input>", {
+      type: "checkbox",
       value: coffeeOrder.emailAddress
     });
 
-    var description = coffeeOrder.size + ' ';
+    var description = coffeeOrder.size + " ";
     if (coffeeOrder.flavor) {
-      description += coffeeOrder.flavor + ' ';
+      description += coffeeOrder.flavor + " ";
     }
 
-    description += coffeeOrder.coffee + ', ';
-    description += ' (' + coffeeOrder.emailAddress + ')';
-    description += ' [' + coffeeOrder.strength + 'x]';
+    description += coffeeOrder.coffee + ", ";
+    description += " (" + coffeeOrder.emailAddress + ")";
+    description += " [" + coffeeOrder.strength + "x]";
 
     // append: connect element together
     $label.append($checkbox);
